@@ -75,12 +75,12 @@ public class SleepingSession {
             return true;
         }
         //если спал в пределах периода между 0 и 6 утра
-        if ( nightStart.isBefore(start) && nightEnd.isAfter(start) ) {
+        if (nightStart.isBefore(start) && nightEnd.isAfter(start)) {
             //System.out.println("хорошая сессия - начало сна попало в диапазон 0-6");//на время теста функции
             return true;
         }
 
-        if ( nightStart.isBefore(end) && nightEnd.isAfter(end) ) {
+        if (nightStart.isBefore(end) && nightEnd.isAfter(end)) {
             //System.out.println("хорошая сессия - конец сна попал в диапазон 0-6");//на время теста функции
             return true;
         }
