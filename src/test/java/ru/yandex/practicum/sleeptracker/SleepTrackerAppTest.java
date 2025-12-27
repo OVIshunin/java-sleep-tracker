@@ -182,6 +182,7 @@ public class SleepTrackerAppTest {
         var result = function.apply(List.of(session1, session2, session4));
         assertEquals(0L, result.getResult());
     }
+
     @Test
     void testSessionsNoSleepNightsEmptyList() {
         var function = new SessionsNoSleepNightsFunction();
