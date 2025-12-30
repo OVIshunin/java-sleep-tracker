@@ -4,6 +4,8 @@ import ru.yandex.practicum.sleeptracker.classes.SleepAnalysisResult;
 import ru.yandex.practicum.sleeptracker.classes.SleepingSession;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Period;
 import java.util.List;
 
@@ -30,6 +32,18 @@ public class SessionsNoSleepNightsFunction  implements SleepAnalysisFunctionInte
                 .map(session -> session.getEndTime().toLocalDate())
                 .max(LocalDate::compareTo)
                 .orElse(LocalDate.now());
+
+        // Корректировка minDate для первой сессии
+        if (!sessions.isEmpty()) {
+            LocalDateTime firstStart = sessions.get(0).getStartTime();
+
+            if  (firstStart.toLocalTime().isBefore(LocalTime.NOON)) {
+                // Если первая запись - до полудня — то учитываем ещё и предыдущую ночь,
+                //двигаем левую границу minDate на день назад
+                minDate = minDate.minusDays(1);
+            }
+            // Если после 12:00 или ровно в 12:00 — оставляем minDate как есть
+        }
 
         // Общее количество ночей между 2мя граничными датами
         long totalNights = Period.between(minDate, maxDate).getDays();

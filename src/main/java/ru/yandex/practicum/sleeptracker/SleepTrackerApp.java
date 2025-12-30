@@ -63,7 +63,8 @@ public class SleepTrackerApp {
         SleepTrackerApp app = new SleepTrackerApp();
 
         try {
-            List<SleepingSession> sessions = app.parseLog(args[0]);
+            //добавил trim() по рекомендации
+            List<SleepingSession> sessions = app.parseLog(args[0].trim());
             List<SleepAnalysisResult> results = app.analyze(sessions);
 
             results.forEach(System.out::println);

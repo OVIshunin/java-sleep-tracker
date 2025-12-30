@@ -177,7 +177,7 @@ public class SleepTrackerAppTest {
 
     // === Тесты для SessionsNoSleepNightsFunction ===
     @Test
-    void testSessionsNoSleepNights_NoSleeplessNights() {
+    void testSessionsNoSleepNightsNoSleeplessNights() {
         var function = new SessionsNoSleepNightsFunction();
         var result = function.apply(List.of(session1, session2, session4));
         assertEquals(0L, result.getResult());
